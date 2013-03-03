@@ -1,0 +1,50 @@
+.loginform ul
+{
+    list-style-type: none;
+}
+
+.loginform ul li
+{
+    padding:5px;
+}
+
+.loginform ul li label
+{
+    width:90px;
+    display:inline-block;
+}
+
+.tblCash
+{
+    margin:0;
+    border:1px solid silver;
+}
+
+.tblCash thead
+{
+    background-color:green;
+    color:#fff;
+}
+
+.tblCash tr td
+{
+    background-color:#fff;
+}
+
+.divtotal
+{
+    background-color:#fff;
+    width:250px;
+    height:150px;
+    border:1px solid silver;
+    padding:0px;
+    margin:5px;
+    text-align:center;
+    font-size: 45px;
+    vertical-align: middle;
+}
+
+.divtotal span
+{
+    padding:25px 0 0 0;
+}
