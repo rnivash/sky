@@ -1,21 +1,25 @@
 function startHome(arr) {
+	params.accountData = arr;
     removeAll(params.MainContainer);    
-    var logout = ce("button");						
-    logout.innerHTML = "logout";
+	
+	fnCreateDashBoard(arr);
+	
+	var div = ce("div");
+	div.setAttribute("class","divlogindetail");
+	
+	var loglbl = ce("span");
+	loglbl.innerHTML = "Welcome <b> " + params.userName + "</b>&nbsp;&nbsp;";
+	
+	div.appendChild(loglbl);
+	
+    var logout = ce("input");	
+	logout.type = "button";
+    logout.value = "logout";
     logout.onclick = function(){
         fnLogout();
     };
-    params.MainContainer.appendChild(logout);
-	
-    var btnAdd = ce("button");						
-    btnAdd.innerHTML = "Add";
-    btnAdd.onclick = function(){
-        fnAdd();
-    };
-    params.MainContainer.appendChild(btnAdd);
-	
-    fnCreateDashBoard(arr);
-	
+	div.appendChild(logout);
+    params.MainContainer.appendChild(div);
 	
 }
 
@@ -25,7 +29,11 @@ function fnAdd(){
         "AccountName":"",
         "Amount":0
     };
-    initDMO(obj,function(data){
+    initDMO(obj,function(data,status){
+		if(status =="cancel"){
+			startHome(params.accountData);
+			return;
+		}
         var myJSONText = JSON.stringify(data);
         var url = "Account?doWork=AddAccount";
         ajax({
@@ -50,6 +58,16 @@ function fnAdd(){
 function fnCreateDashBoard(arrValue1){
     var div,tbl,td,tr,th,thead,span;
     div = ce("div");
+	div.setAttribute("class","divMainGrid");
+	
+	var btnAdd = ce("input");	
+	btnAdd.type = "button";	
+    btnAdd.value = "Add";
+    btnAdd.onclick = function(){
+        fnAdd();
+    };
+    div.appendChild(btnAdd);
+	
     tbl = ce("table");
 					 
     fnAddHeadRow(tbl,arrValue1);  
@@ -62,22 +80,25 @@ function fnCreateDashBoard(arrValue1){
         var obj = arrValue1[i];
         totalValue += parseFloat(obj.Amount);
     }
-    fnAddTotalRow(tbl,totalValue.toFixed(2),5);
+    fnAddTotalRow(tbl,totalValue.toFixed(2),3);
     params.loadjscssfile("js/dmo.js", "js");
 	
     div = ce("div");	
     div.setAttribute("class","divtotal");
 	
     span = ce("span");
-    span.innerHTML = totalValue.toFixed(2);
+    span.innerHTML = totalValue.toFixed(2) + " RS";
     div.appendChild(span);
     params.MainContainer.appendChild(div);
 	
 }
 
 function fnUpdate(el){
-    initDMO(getCurrentObject(el),function(data){
-			
+    initDMO(getCurrentObject(el),function(data,status){
+		if(status =="cancel"){
+			startHome(params.accountData);
+			return;
+		}
         for(var i = 1; i< el.childNodes.length; i++){
             el.childNodes[i].innerHTML =getAttributeByIndex(data,i-1);
         }
@@ -149,13 +170,16 @@ function fnAddTotalRow(tbl,value,idx){
     var tr,td;	
     tr = ce("tr");		
     tbl.appendChild(tr);
-    for(var i=0;i<len;i++){
+    for(var i=0;i<len-2;i++){
         td = ce("td");
+		td.setAttribute("class","cash");
         if(i == (idx - 1)){
             td.innerHTML = value;
+			
         }
         else if(i == (idx - 2)){
             td.innerHTML = "Total";
+			
         }
         else
         {
@@ -174,6 +198,7 @@ function fnAddRows(tbl,arrValue1,fnCallback){
         tbl.appendChild(tr);		
         td = ce("td");
         td.innerHTML = i+1;
+		td.setAttribute("class","sno");
         tr.appendChild(td);
         if(fnCallback != undefined){
             tr.ondblclick = function(){
@@ -210,6 +235,12 @@ function fnAddRows(tbl,arrValue1,fnCallback){
         var attrValue = obj[key];
 			
         td = ce("td");
+		if(attrName == "key" || attrName == "userKey")
+			td.setAttribute("class","hide");
+		else if(attrName == "Amount")
+			td.setAttribute("class","cash");
+		
+			
         td.innerHTML = typeof(attrValue)== "object" ? getObjectValue(attrValue) :attrValue;
         tr.appendChild(td);
     }
@@ -244,6 +275,9 @@ function fnAddHeadRow(tbl,arrValue1){
             var attrValue = obj[key];
 			
             th = ce("th");
+			if(attrName == "key" || attrName == "userKey")
+				th.setAttribute("class","hide");
+			
             th.innerHTML = attrName;
             thead.appendChild(th);
         }

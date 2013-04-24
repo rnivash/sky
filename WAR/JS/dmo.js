@@ -21,6 +21,8 @@ function CreateDMOForm(data,callback){
         txtUserName.setAttribute("id","txt"+attrName);
         txtUserName.value = typeof(attrValue)== "object" ? getObjectValue(attrValue) :attrValue;
         li.appendChild(txtUserName);
+		if(attrName == "key" || attrName == "userKey")
+			li.setAttribute("class","hideme");
         ul.appendChild(li);
     }
 	
@@ -30,12 +32,31 @@ function CreateDMOForm(data,callback){
     btnSubmit.value = " OK ";		
     btnSubmit.onclick = function(){
         if(callback != undefined){
+			$("#lblstatus").innerHTML = "<img src='/img/loading.gif' />";
             var data1 = getData(this);
-            callback(data1);
+            callback(data1,"");
+        }
+    };
+    li.appendChild(btnSubmit);	
+	
+	btnSubmit = ce("input");	
+    btnSubmit.type = "button";
+    btnSubmit.value = " Cancel ";		
+    btnSubmit.onclick = function(){
+        if(callback != undefined){
+            
+            callback({},"cancel");
         }
     };
     li.appendChild(btnSubmit);	
     ul.appendChild(li);
+	
+	li = ce("li");
+    var lblPassword = ce("span");
+    li.appendChild(lblPassword);    
+    lblPassword.setAttribute("id","lblstatus");
+    ul.appendChild(li);
+	
     div.setAttribute("class","loginform");
     div.appendChild(ul);	
     return div;

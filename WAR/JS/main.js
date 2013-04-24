@@ -5,7 +5,7 @@ function Main(){
     params.MainContainer = $("#divMain");
 	
     if(!params.isValid()) return 0;
-    params.MainContainer.innerHTML = "Loading...";
+    params.MainContainer.innerHTML = "&nbsp;&nbsp;<img src='/img/loading.gif' /> &nbsp;&nbsp;Loading, please wait...";
     params.loadjscssfile("js/login.js", "js");
 }
 
@@ -13,6 +13,8 @@ function Global(){
     var MainContainer  = null;	
     var xmlhttp = null;	
     var jsFiles = {};
+	this.userName = "";
+	this.accountData = {};
 }
 
 Global.prototype.isValid = function isValid(){
