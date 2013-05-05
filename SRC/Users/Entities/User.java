@@ -19,10 +19,19 @@ public class User extends Entity implements Serializable {
     private String userName;
     @Persistent
     private String passWord;
+	@Persistent
+    private Boolean isAdmin;
 
     public User(String userName, String password) {
         this.userName = userName;
         this.passWord = password;
+		this.isAdmin = false;
+    }
+	
+	public User(String userName, String password, boolean isAdmin) {
+        this.userName = userName;
+        this.passWord = password;
+		this.isAdmin = isAdmin;
     }
 
     public Key getKey() {
@@ -35,5 +44,13 @@ public class User extends Entity implements Serializable {
 
     public String getPassWord() {
         return this.passWord;
+    }
+	
+	public boolean getIsAdmin() {
+        return this.isAdmin;
+    }
+	
+	public void setIsAdmin(boolean val) {
+        this.isAdmin = val;
     }
 }

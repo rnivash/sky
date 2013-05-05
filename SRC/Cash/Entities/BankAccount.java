@@ -7,6 +7,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.IdentityType;
+import java.util.Date;
 
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class BankAccount extends Entity {
@@ -20,13 +21,16 @@ public class BankAccount extends Entity {
     private String AccountName;
     @Persistent
     private double Amount;
+	@Persistent
+    private Date createdDate;
 
     public BankAccount(Key userKey, String AccountName, double Amount) {
         this.userKey = userKey;
         this.AccountName = AccountName;
         this.Amount = Amount;
+		this.createdDate = new Date();
     }
-
+	
     public Key getKey() {
         return this.key;
     }
@@ -53,5 +57,13 @@ public class BankAccount extends Entity {
 
     public void setAmount(double val) {
         this.Amount = val;
+    }
+	
+	public Date getCreatedDate() {
+        return this.createdDate;
+    }
+	
+	public void setCreatedDate(Date val) {
+        this.createdDate = val;
     }
 }

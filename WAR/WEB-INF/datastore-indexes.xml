@@ -5,5 +5,9 @@
         <property name="userKey" direction="asc"/>
         <property name="AccountName" direction="asc"/>
  </datastore-index>
+ <datastore-index kind="BankAccount" ancestor="false" source="manual">
+        <property name="userKey" direction="asc"/>
+        <property name="createdDate" direction="asc"/>
+  </datastore-index>
 </datastore-indexes>
  

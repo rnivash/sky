@@ -7,6 +7,7 @@ import com.google.gson.*;
 import Cash.Entities.*;
 import java.io.BufferedReader;
 import java.util.List;
+import java.util.Date;
 
 public class AccountEngine extends HttpServlet {
 
@@ -51,18 +52,19 @@ public class AccountEngine extends HttpServlet {
                 bankAccount = GetBankAccount(GetPostDataFromStream(req));
                 if (bankAccount != null) {
                     bankAccount.setUserKey(user.getKey());
+					bankAccount.setCreatedDate(new Date());
                     store.AddAccount(bankAccount);
                 }
             } else if (doWork.equals("DeleteAccount")) {
                 bankAccount = GetBankAccount(GetPostDataFromStream(req));
                 if (bankAccount != null) {
-                    store.DeleteAccount(user, bankAccount);
+                    store.DeleteAccount(bankAccount);
                 }
                 output = gson.toJson(bankAccount);
             } else if (doWork.equals("UpdateAccount")) {
                 bankAccount = GetBankAccount(GetPostDataFromStream(req));
                 if (bankAccount != null) {
-                    store.UpdateAccount(user, bankAccount);
+                    store.UpdateAccount(bankAccount);
                 }
                 output = gson.toJson(bankAccount);
             }
