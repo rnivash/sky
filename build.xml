@@ -1,5 +1,5 @@
  <project name="myskyapps" default="datanucleusenhance">
-  <property name="appengine.sdk" location="D:\Program Files\AppEngine" />
+  <property name="appengine.sdk" location="/home/nivash/wormhole/appengine-java-sdk-1.9.60/" />
   
   <import file="${appengine.sdk}/config/user/ant-macros.xml" />
   
@@ -20,6 +20,13 @@
         todir="war/WEB-INF/lib"
         flatten="true">
       <fileset dir="${appengine.sdk}/lib/user">
+        <include name="**/*.jar" />
+      </fileset>
+    </copy>
+    <copy
+        todir="war/WEB-INF/lib"
+        flatten="true">
+      <fileset dir="lib">
         <include name="**/*.jar" />
       </fileset>
     </copy>

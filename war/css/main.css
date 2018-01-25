@@ -1,0 +1,53 @@
+
+.loginform{
+	width:208px;
+	height:200px;
+	background-color: rgb(76, 102, 164);
+	padding:10px;
+	position:absolute;
+	left:20%;
+	top:10%;
+}
+
+.loginform, .loginform a{
+	color:#fff;
+}
+
+.loginform a{
+	color:#fff;
+}
+
+.ui-jqgrid-htable th{
+background-color: rgb(76, 102, 164);
+border-right:1px solid #fff;
+border-bottom:1px solid #fff;
+color:#fff;
+
+
+}
+.ui-jqgrid-resize,div.loading {
+display:none;
+}
+
+.divgridcontent{
+
+}
+.jqgrow {
+background-color: #edeff4;
+}
+
+.jqgrow  td{
+border-right:1px solid #fff;
+border-bottom:1px solid #fff;
+
+}
+.ui-dialog-titlebar{
+background-color: rgb(76, 102, 164);
+
+}
+.ui-dialog-content,.ui-dialog-buttonpane{
+
+background-color: #edeff4;
+border:1px solid silver;
+}
+

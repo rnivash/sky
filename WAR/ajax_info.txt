@@ -1,3 +1,0 @@
-Nivash is still writing code for this application..
-
-</br> <a href="javascript:newLoginForm();" >login</a>

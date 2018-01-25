@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Sky Apps</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+  <script src="js/lib/jquery-1.9.1.min.js" type="text/javascript">
+</script>
+  <script src="js/lib/jquery-ui-1.10.3.custom.min.js" type="text/javascript">
+</script>
+  <script src="js/lib/jquery.jqGrid.min.js" type="text/javascript">
+</script>
+  <script src="js/home.js" type="text/javascript">
+</script>
+</head>
+
+<body>
+  <a href="#" id="dialog-link" class="ui-state-default ui-corner-all" name="dialog-link">Add amount</a> 
+  <a href="#" id="logout-link" class="ui-state-default ui-corner-all" name="logout-link">Logout</a>
+
+  <div id="dialog" style="display:none;">
+    <table>
+      <tr>
+        <td>Remarks :</td>
+
+        <td><input type="text" id="txtRemarks" /></td>
+      </tr>
+
+      <tr>
+        <td>Amount :</td>
+
+        <td><input type="text" id="txtAmount" /></td>
+      </tr>
+    </table><input type="hidden" id="hdnDialogOperation" value="" /> <input type="hidden" id="hdnKey" value="" />
+  </div>
+
+  <div class="divgridcontent">
+    
+  </div>
+</body>
+</html>
